@@ -8,9 +8,9 @@ let make = () =>
     <header className="App-header">
       <img src=logo className="App-logo" alt="logo" />
       <p>
-        "Edit"->React.string
+        "Edit "->React.string
         <code> "src/App.js"->React.string </code>
-        "and save to reload."->React.string
+        " and save to reload."->React.string
       </p>
       <a
         className="App-link"
