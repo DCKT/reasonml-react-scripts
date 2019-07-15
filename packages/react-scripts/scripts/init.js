@@ -99,6 +99,9 @@ module.exports = function(
     build: 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
+    "bs:clean": "bsb -clean-world",
+    "bs:build": "bsb -make-world",
+    "bs:watch": "bsb -make-world -w"
   };
 
   // Setup the eslint config
@@ -164,7 +167,7 @@ module.exports = function(
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
-  args.push('react', 'react-dom');
+  args.push('react', 'react-dom', 'bs-platform@5.0.6', 'reason-react@0.7.0');
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
@@ -187,6 +190,7 @@ module.exports = function(
   if (!isReactInstalled(appPackage) || template) {
     console.log(`Installing react and react-dom using ${command}...`);
     console.log();
+
 
     const proc = spawn.sync(command, args, { stdio: 'inherit' });
     if (proc.status !== 0) {
@@ -263,6 +267,8 @@ function isReactInstalled(appPackage) {
 
   return (
     typeof dependencies.react !== 'undefined' &&
-    typeof dependencies['react-dom'] !== 'undefined'
+    typeof dependencies['react-dom'] !== 'undefined' &&
+    typeof dependencies['bs-platform'] !== 'undefined' && 
+    typeof dependencies['reason-react'] !== 'undefined'
   );
 }

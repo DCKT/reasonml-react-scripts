@@ -38,12 +38,16 @@ module.exports = class TestSetup {
     if (shouldInstallScripts) {
       packageJson.dependencies = Object.assign({}, packageJson.dependencies, {
         'react-scripts': 'latest',
+        'bs-platform': '5.0.6'
       });
     }
     packageJson.scripts = Object.assign({}, packageJson.scripts, {
       start: 'react-scripts start',
       build: 'react-scripts build',
       test: 'react-scripts test',
+      "bs:clean": "bsb -clean-world",
+      "bs:build": "bsb -make-world",
+      "bs:watch": "bsb -make-world -w"
     });
     packageJson.license = packageJson.license || 'UNLICENSED';
     await fs.writeJson(
